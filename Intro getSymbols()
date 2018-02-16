@@ -1,0 +1,68 @@
+Introducing getSymbols()
+The getSymbols() function from the quantmod package provides a consistent interface to import data from various sources into your workspace. By default, getSymbols() imports the data as a xts object.
+
+This exercise will introduce you to getSymbols(). You will use it to import QQQ data from Yahoo! Finance. QQQ is an exchange-traded fund that tracks the Nasdaq 100 index, and Yahoo! Finance is the default data source for getSymbols().
+
+You use the Symbols argument to specify the instrument (i.e. the ticker symbol) you want to import. Since Symbols is the first argument to getSymbols(), you usually just type the instrument name and omit Symbols =.
+
+# Load the quantmod package
+library(quantmod)
+
+# Import QQQ data from Yahoo! Finance
+getSymbols(Symbols = "QQQ", src = "yahoo")
+
+# Look at the structure of the object getSymbols created
+str(QQQ)
+
+# Look at the first few rows of QQQ
+head(QQQ)
+
+
+Data sources
+In the last exercise, you imported data from Yahoo! Finance. The src argument allows you to tell getSymbols() to import data from a different data source.
+
+In this exercise, you will import data from Google Finance and FRED. Google Finance is a source similar to Yahoo! Finance. FRED is an online database of economic time series data created and maintained by the Federal Reserve Bank of St. Louis.
+
+getSymbols() imports data from Yahoo! Finance by default because src = "yahoo" by default. The src values for Google Finance and FRED are "google" and "FRED", respectively.
+
+The quantmod package has already been loaded for you.
+
+# Import QQQ data from Google Finance
+getSymbols(Symbols = "QQQ", src = "google")
+
+# Look at the structure of QQQ
+str(QQQ)
+
+# Import GDP data from FRED
+getSymbols(Symbols = "GDP", src = "FRED")
+
+# Look at the structure of GDP
+str(GDP)
+
+
+Make getSymbols() return the data it retrieves
+In the last exercise, getSymbols() automatically created an object for you, based on the symbol you provided. Sometimes you may want to assign the data to an object yourself, so you need getSymbols() to return the data instead.
+
+There are two arguments that will make getSymbols() return the data:
+
+Set auto.assign = FALSE.
+Set env = NULL.
+The two methods are functionally equivalent, but I encourage you to use the first method because the auto.assign argument describes the behavior better. Your future self will be more likely to remember what auto.assign = FALSE means than what env = NULL means.
+
+# Load the quantmod package
+library(quantmod)
+
+# Assign SPY data to 'spy' using auto.assign argument
+spy <- getSymbols(Symbols = "SPY", auto.assign = FALSE)
+
+# Look at the structure of the 'spy' object
+str(spy)
+
+# Assign JNJ data to 'jnj' using env argument
+jnj <- getSymbols(Symbols = "JNJ", env = NULL)
+
+# Look at the structure of the 'jnj' object
+str(jnj)
+
+
+
